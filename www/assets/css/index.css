@@ -1,0 +1,148 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+    -webkit-user-select: none;
+    background-color:#E4E4E4;
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:14px;
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+}
+
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.clear {
+    clear: both;
+    display: block;
+    content: "";
+}
+
+.navbar > .brand {
+    line-height: 60px;
+    margin: 0 10px;
+    text-indent: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: url("../img/logo.png") left center;
+    background-size:    40px 40px;
+    background-repeat: no-repeat;
+}
+
+.navbar {
+    background: white;
+    border-bottom: 1px solid #666;
+    height: 60px;
+    position: fixed;
+    top: 0px;
+    display: block;
+    content: "";
+    width: 100%;
+    z-index: 100;
+}
+
+.navbar.shadow {
+    -webkit-box-shadow: 0 1px 4px 0 #999;
+       -moz-box-shadow: 0 1px 4px 0 #999;
+            box-shadow: 0 1px 4px 0 #999;
+}
+
+
+.loader {
+    display: none;
+    position:absolute;
+    z-index: 80;
+    width: 100%;
+    height: 100%;
+}
+
+.loader-background {
+    background: #000;
+    width: 100%;
+    display: block;
+    height: 100%;
+    position: absolute;
+}
+
+.loader-image {
+    background: url('../img/loader-white.png');
+    background-size: 80px 80px;
+    content: " ";
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -80px 0 0 -40px;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 350ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    -moz-animation-name: rotate;
+    -moz-animation-duration: 350ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+}
+
+.loader-image-warning {
+    background: url('../img/warning-white.png');
+    background-size: 80px 80px;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -80px 0 0 -40px;
+}
+
+.loader-message {
+    color: white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    text-transform: uppercase;
+    margin: 40px auto;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.js-loader-message {
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 200px;
+}
+
+
+@-webkit-keyframes rotate {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes rotate {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(360deg);}
+}

@@ -1,0 +1,69 @@
+/* Larger Screens */
+@media screen  and (min-width: 500px) {
+    body {
+        font-size: 16px;
+    }
+
+    /* Layout Changes */
+    .swipearea,
+    .mousearea,
+    .touchable {
+        height: 600px;
+        line-height: 600px;
+    }
+
+    .action-area {
+        height: 600px;
+        margin: 22px;
+        margin-top: 200px;
+    }
+
+    .touchable { top: -600px; }
+    .touchable i { line-height: 300px; }
+
+    /* Devices */
+    ul.devices { height: 700px; }
+    ul.devices li {
+        font-size: 18px;
+        padding: 18px;
+    }
+
+
+    /* Larger Slide Button */
+    .slide-btn {
+        height: 50px;
+        width: 185px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        line-height: 43px;
+        padding: 4px;
+    }
+
+    .slide-btn .slide {
+        width: 40px;
+        height: 40px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+    }
+
+    .slide-btn.top-right {
+        top: 150px;
+        margin-left: -92px;
+    }
+
+    .slide-btn.on .slide:before,
+    .slide-btn.off .slide:before {
+        font-size: 18px;
+        width: 100px;
+    }
+
+    .slide-btn.on .slide:before { left: 48px; }
+    .slide-btn.off .slide:before { left: -117px; }
+
+
+
+
+
+}

@@ -1,0 +1,32 @@
+.icon {
+    display: block;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    margin: 9px;
+}
+
+.navbar .icon { margin: 15px 0 0 14px;}
+
+.icon-menu {
+    background: url('../img/menu-icon.svg');
+    background-size: 28px 28px;
+    width: 28px;
+    height: 28px;
+    padding-right: 10px;
+    border-right: 1px solid #ccc;
+}
+
+.icon-power {
+    background: url('../img/power.svg') center center;
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.icon-warning {
+    background: url('../img/warning.svg') center center;
+    background-size: 80px 80px;
+    width: 80px;
+    margin: 0 auto;
+    height: 80px;
+}

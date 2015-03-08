@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="co.za.thatguy.blink" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="BluetoothSerial">
+        <param name="android-package" value="com.megster.cordova.BluetoothSerial" />
+    </feature>
+    <feature name="VolumeButtons">
+        <param name="android-package" value="com.manueldeveloper.VolumeButtonsListener" />
+    </feature>
+    <feature name="WebViewDebug">
+        <param name="android-package" value="com.jamiestarke.webviewdebug.WebViewDebug" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>Blink</name>
+    <description>
+        Blink is an attempt to create a Bluetooth interfacing remote for Python. 
+        At the time I wrote this, I wasn't able to find anything similar to do the job. 
+        Existing remote apps just didn't seem to work with linux. 
+    </description>
+    <author email="iam@thatguy.co.za" href="http://thatguy.co.za">
+        Rudi Strydom (Thatguy)
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+</widget>

@@ -1,0 +1,100 @@
+/* CREATING SOME AWESOME SLIDE BUTTONS */
+.slide-btn {
+  height: 30px;
+  width: 120px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  line-height: 30px;
+  -webkit-box-shadow:inset 2px 2px 3px -1px #333;
+  box-shadow:inset 2px 2px 3px -1px #333;
+  padding: 2px;
+  box-sizing: border-box;
+  overflow: hidden;
+  -webkit-transition: all 333ms ease-out;
+  -moz-transition: all 333ms ease-out;
+  -ms-transition: all 333ms ease-out;
+  -o-transition: all 333ms ease-out;
+  transition: all 333ms ease-out;
+  background: #AAA;
+  border: 1px solid #CCC;
+}
+
+.slide-btn.top-right {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  margin-left: -55px;
+}
+
+.slide-btn .slide {
+  background: white;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  content: " ";
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  border: 1px solid #215a60;
+  -webkit-box-shadow: 1px 1px 3px 0px #333;
+  box-shadow: 1px 1px 3px 0px #333;
+  background-image:
+    radial-gradient(
+      circle closest-side,
+      white,
+      #e8e8e8
+    );
+}
+
+/* DEFAULT COLORS */
+.slide-btn.off,
+.slide-btn.on {
+  background: #233;
+  border: 1px solid #333;
+}
+/* WHICH BUTTON IS WHICH SIDE */
+.slide-btn.off {
+  text-align: right;
+  background: #255;
+  -webkit-box-shadow:inset 2px 2px 4px -1px #000;
+  box-shadow:inset 2px 2px 4px -1px #000;
+}
+.slide-btn.on {
+  text-align: left;
+  background: #244;
+}
+
+
+/* OFF STATE */
+.slide-btn.off .slide { border-color: #707070; }
+.slide-btn.off .slide:before {
+  content: attr(data-off-label);
+  font-size: 13px;
+  display: inline-block;
+  text-shadow: 1px 1px 2px #000;
+  height: 24px;
+  position: relative;
+  top: -4px;
+  left: -82px;
+  color: #FFF;
+  width: 70px;
+  text-align: center;
+}
+
+/* ON STATE */
+.slide-btn.on .slide { border-color: #215a60; }
+.slide-btn.on .slide:before {
+  content: attr(data-on-label);
+  font-size: 13px;
+  display: inline-block;
+  text-shadow: 1px 1px 2px #000;
+  height: 24px;
+  position: relative;
+  top: -4px;
+  left: 33px;
+  color: #FFF;
+  text-align: center;
+  width: 70px;
+}

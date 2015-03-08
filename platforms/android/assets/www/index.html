@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/menu.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/icons.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/slide-btn.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/tablet.css" />
+        <title>Blink</title>
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div class="navbar shadow">
+            <a href="#" class="pull-left icon icon-menu js-open-menu"></a>
+            <span class="brand pull-left">Blink</span>
+        </div>
+
+        <!-- Menu -->
+        <div class="menu menu-side">
+            <ul>
+                <li><a href="#">List Devices</a></li>
+                <li><a href="#">Last Connected</a></li>
+                <li><a href="#">Retry Interval</a></li>
+                <li onClick="navigator.app.exitApp();">
+                    <a href="#">
+                    <i class="icon icon-power pull-left"></i> Exit</a>
+                </li>
+            </ul>
+        </div>
+        <div class="menu-side-background"></div>
+
+        <!-- Loader -->
+        <div class="loader js-loader">
+            <div class="loader-background"></div>
+            <div class="success loader-image"></div>
+            <div class="loader-image-warning error"></div>
+            <div class="loader-message">
+                <div class="js-loader-message">This is where we will be showing loading messages. This is all proper contents</div>
+                <br />
+                <button class="error btn btn-lg btn-danger" onClick='loader.close();'>CLOSE</button>
+            </div>
+        </div>
+
+       <!-- THE CONTENT TO DISPLAY -->
+        <div class="layout-main row">
+          <div class="center">
+
+
+            <!-- DISPLAY BLUETOOTH OFF MESSAGE -->
+            <div class="status-off">
+              <div class="info-icon">
+                <i class="icon icon-warning"></i>
+              </div>
+              <h2>Bluetooth Switched Off!</h2>
+              <div>
+                <p>Blink needs Bluetooth to do it's magic. Without it, it has nobody to talk to.</p>
+                <p>Please consider enabling Bluetooth, and ensure that you have paired with the server.</p>
+              </div>
+            </div>
+
+
+
+            <!-- DISPLAY BLUETOOTH NO DEVICE -->
+            <div class="no-devices">
+              <div class="info-icon">
+                <i class="icon icon-warning"></i>
+              </div>
+              <h2>No Paired Bluetooth devices</h2>
+              <div>
+                <p>Blink needs Bluetooth to do it's magic. Without it, it has nobody to talk to.</p>
+                <p>You have not connected "Paired" with any Bluetooth devices. Nothing paired, nothing to connect to sadly. Please open your Bluetooth settings and pair with the computer running the Blink server.</p>
+              </div>
+            </div>
+
+
+
+            <!-- TO DISPLAY ON BLUETOOTH ON -->
+            <div class="status-on" align="center">
+
+              <!-- SLIDE BUTTON -->
+              <!-- <div class="slide-btn on" data-on="bth.connect" data-off="bth.disconnect">
+                <div class="slide"></div>
+              </div> -->
+
+              <div class="info-icon on">
+                <i class="glyphicon glyphicon-link"></i>
+              </div>
+
+              <p>Select the device we should connect to please</p>
+              <!-- PAIRED DEVICE LISTING -->
+              <div class="devices">
+                <h4>Paired Devices Available</h4>
+                <ul class="unstyled devices">
+                </ul>
+              </div>
+            </div>
+
+
+
+            <!-- TO DISPLAY ON BLUETOOTH ON -->
+            <div class="connected" align="center">
+
+              <!-- SLIDE BUTTON -->
+
+              <div class="info-icon on pull-left">
+                <i class="glyphicon glyphicon-ok-sign"></i>
+              </div>
+              <br />
+
+              <!-- SWIPE AREA -->
+              <div class="slide-btn on pull-right top-right"
+                data-on="$('.swipearea').show();$('.mousearea').hide();$('.mouse-btn').hide();"
+                data-off="$('.swipearea').hide();$('.mousearea').show();$('.mouse-btn').show();"
+                >
+                <div class="slide" data-on-label="Swipe Area" data-off-label="Mouse Area"></div>
+              </div>
+              <div class="clearfix"></div>
+
+                <div class="action-area">
+                    <div
+                        class="well swipearea"
+                    >Swipe Area</div>
+
+                    <div
+                        class="well mousearea"
+                        data-type="drag-area"
+                        style="display:none;"
+                    >Mouse Area</div>
+
+                    <div
+                        class="well touchable pull-left"
+                        data-action="left">
+                        <i>&lt;&lt;</i>
+                    </div>
+
+                    <div
+                        class="well touchable pull-right"
+                        data-action="right"
+                    >
+                        <i>&gt;&gt;</i>
+                    </div>
+                </div>
+
+              <div class="clearfix"></div>
+        </div>
+        </div>
+
+
+        <!-- All the required scripts to make this work -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="assets/js/fastclick.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/velocity.min.js"></script>
+        <script type="text/javascript" src="assets/js/loader.js"></script>
+        <script type="text/javascript" src="assets/js/index.js"></script>
+        <script type="text/javascript" src="assets/js/menu.js"></script>
+        <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.finger.min.js"></script>
+        <script type="text/javascript" src="assets/js/jquery.touchSwipe.min.js"></script>
+        <script type="text/javascript" src="assets/js/slide-btn.js"></script>
+        <script type="text/javascript" src="assets/js/dragon.js"></script>
+        <script type="text/javascript" src="assets/js/database.js"></script>
+        <script type="text/javascript" src="assets/js/bluetooth.js"></script>
+    </body>
+</html>

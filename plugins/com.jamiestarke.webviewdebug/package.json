@@ -1,0 +1,18 @@
+{
+    "version": "1.0.8",
+    "name": "com.jamiestarke.webviewdebug",
+    "cordova_name": "WebView Debug",
+    "description": "Enables debugging of WebViews within Android for Cordova Apps",
+    "license": "Apache 2.0",
+    "keywords": [
+        "cordova",
+        "debug",
+        "webview"
+    ],
+    "engines": [
+        {
+            "name": "cordova-android",
+            "version": ">=3.2.0"
+        }
+    ]
+}
