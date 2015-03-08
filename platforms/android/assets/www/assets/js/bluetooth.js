@@ -5,6 +5,7 @@ var bth = (function($, window, db, loader) {
     var _listDevices    = false;
     var _retry          = 0;
     var _maxRetry       = 20;
+    var _wasConnected   = false;
 
     /**
      * ON EVENTS (CALLBACK FUNCTIONS)
@@ -33,6 +34,17 @@ var bth = (function($, window, db, loader) {
             _swipeArea();
             _touchArea();
             _checkEnabled();
+
+            var getDevices = db.get("devices");
+
+            getDevices.forEach(function(el, index, array){
+                console.log(el);
+                console.log(array[index]);
+            });
+
+            if (getDevices) {
+                _devices = getDevices;
+            }
         });
     }
 
@@ -75,12 +87,9 @@ var bth = (function($, window, db, loader) {
     {
         console.log("CONNECTED, send commands");
         _hideAll();
-
-        //_setLastConnected();
+        _setLastConnected();
 
         $(".connected").show();
-        //_message("Successfully connected");
-        //_listDevices    = false;
         _retry = 0;
     }
 
@@ -88,18 +97,17 @@ var bth = (function($, window, db, loader) {
     function _onNotConnected(device)
     {
         console.log("NOT CONNECTED, listing devices");
-        //_hideAll();
 
         // I swear we were connected, just now!
-       /* if (_wasConnected) {
+        if (_wasConnected) {
             _checkReconnect("Connection lost, attempting to reconnect");
-        }*/
+        }
 
         // Should we list the devices?
-        /*if ( ! _listDevices)
+        if ( ! _listDevices)
         {
             _checkReconnect("Attempting to connect to previous server");
-        }*/
+        }
         bluetoothSerial.list(_onDeviceList);
     }
 
@@ -116,7 +124,7 @@ var bth = (function($, window, db, loader) {
             var deviceList = "";
             devices.forEach(function(device) {
                 deviceList += '<li data-id="' + device.id + '" onClick="bth.connect(\'' + device.id + '\');">';
-                deviceList += device.name + ' [' + device.id + ']';
+                deviceList += device.name;
                 deviceList += '</li>';
 
                 _devices[device.id] = device.name;
@@ -171,32 +179,26 @@ var bth = (function($, window, db, loader) {
     }
 
 
-/*    function _reconnect(device) {
+    function _reconnect(device) {
         if (_retry <= _maxRetry) {
 
             _retry += 1;
-            _error("Attempting to reconnect (" + _retry + " of " + _maxRetry + ")");
-            //_connect(device);
+            loader.set("Attempting to reconnect (" + _retry + " of " + _maxRetry + ")");
+            _connect(device);
 
         }  else {
-            _error("Failed to reconnect!");
+            loader.error("Failed to reconnect", true, 10000);
         }
     }
 
+
     // Attempt to reconnect to the last item
     function _checkReconnect(message) {
-        //_error(message);
         if (db.get("last_device_success")) {
             _reconnect(db.get("last_device_success"));
+            loader.set(message);
         }
-    }*/
-
-    /*function _startConnectionSequence() {
-        bluetoothSerial.isConnected(
-            function(){_onConnected();},
-            function(){_onNotConnected();}
-        );
-    }*/
+    }
 
 
     /*function _mainLoop(){
@@ -204,10 +206,6 @@ var bth = (function($, window, db, loader) {
     }
 
     function _loop() {
-        var getDevices = db.get("devices");
-        if (getDevices) {
-            _devices = getDevices;
-        }
 
         bluetoothSerial.isEnabled(
             _onEnabled,
