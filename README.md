@@ -10,6 +10,25 @@ https://play.google.com/store/apps/details?id=co.za.thatguy.blink
 Follow the instructions to get the server on it's dedicated GitHub page: https://github.com/drpain/blink-server
 
 And enjoy!
-Fetching plugin "com.manueldeveloper.volume-buttons" via npm
+
+# Changelog
+### V1.0.0 - 27 Feb 2016
+- Mouse speed slider (mouse movement speed)
+- Click sensitivity slider (How fast / slow for a tap to register a click)
+- A double click is now 2 rapid click after each other
+- Right Click sensitivity slider (How long to hold the tap to right click)
+- UI Tweaks
+- Cordova update to latest (Security Precaution)
+
+Swipe Area Changes | Added Application Settings
+-------------------|---------------------------
+![Swipe Area Screen Change](/designs/screenshots/Screenshot_2016-02-27-01-14-18.png)|![Added Application Settings](/designs/screenshots/Screenshot_2016-02-27-01-14-36.png)
+
+### Notes (Mostly for myself) 
+
+Relies on the following cordova plugin (No consern to installers)
+
+```shell
 cordova plugin add com.manueldeveloper.volume-buttons
 cordova plugin add cordova-plugin-bluetooth-serial
+```
