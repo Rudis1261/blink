@@ -11,6 +11,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/slide-btn.css" />
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <link rel="stylesheet" type="text/css" href="assets/css/tablet.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/nouislider.min.css" />
         <title>Blink</title>
     </head>
     <body>
@@ -24,14 +25,23 @@
         <!-- Menu -->
         <div class="menu menu-side">
             <ul>
-                <!-- <li><a href="#">List Devices</a></li>
-                <li><a href="#">Last Connected</a></li>
-                <li><a href="#">Retry Interval</a></li> -->
                 <li onClick="navigator.app.exitApp();">
                     <a href="#">
                     <i class="icon icon-power pull-left"></i> Exit</a>
                 </li>
             </ul>
+            <div class="menu__setting--group">
+                <strong>Mouse Speed</strong>
+                <div class="slider" id="mouse-sensitivity"></div>
+            </div>
+            <div class="menu__setting--group">
+                <strong>Click Sensitivity (Tap)</strong>
+                <div class="slider" id="click-sensitivity"></div>
+            </div>
+            <div class="menu__setting--group">
+                <strong>Right Click Sensitivity (Hold)</strong>
+                <div class="slider" id="right-click-sensitivity"></div>
+            </div>
         </div>
         <div class="menu-side-background"></div>
 
@@ -123,9 +133,13 @@
               <div class="clearfix"></div>
 
                 <div class="action-area">
-                    <div
-                        class="well swipearea"
-                    >Swipe Area</div>
+                    <div class="well swipearea" style="display: block;">
+                        <div class="swipearea__play" style="">Play/Pause</div>
+                        <div class="swipearea__next">Next</div>
+                        <div class="swipearea__message transition--fast">Swipe Area</div>
+                        <div class="swipearea__prev">Prev</div>
+                        <div class="swipearea__stop">Stop</div>
+                    </div>
 
                     <div
                         class="well mousearea"
@@ -155,17 +169,19 @@
         <!-- All the required scripts to make this work -->
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="assets/js/fastclick.min.js"></script>
+        <script type="text/javascript" src="assets/js/underscore-min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/nouislider.min.js"></script>
         <script type="text/javascript" src="assets/js/velocity.min.js"></script>
         <script type="text/javascript" src="assets/js/loader.js"></script>
         <script type="text/javascript" src="assets/js/index.js"></script>
         <script type="text/javascript" src="assets/js/menu.js"></script>
-        <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+        <script type="text/javascript" src="assets/js/database.js"></script>
         <script type="text/javascript" src="assets/js/jquery.finger.min.js"></script>
         <script type="text/javascript" src="assets/js/jquery.touchSwipe.min.js"></script>
         <script type="text/javascript" src="assets/js/slide-btn.js"></script>
         <script type="text/javascript" src="assets/js/dragon.js"></script>
-        <script type="text/javascript" src="assets/js/database.js"></script>
         <script type="text/javascript" src="assets/js/bluetooth.js"></script>
+        <script type="text/javascript" src="assets/js/app.js"></script>
     </body>
 </html>

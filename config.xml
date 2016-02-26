@@ -1,14 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="co.za.thatguy.blink" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="co.za.thatguy.blink" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Blink</name>
     <description>
-        Blink is an attempt to create a Bluetooth interfacing remote for Python. 
-        At the time I wrote this, I wasn't able to find anything similar to do the job. 
-        Existing remote apps just didn't seem to work with linux. 
+        Blink is an attempt to create a Bluetooth interfacing remote for Python.
+        At the time I wrote this, I wasn't able to find anything similar to do the job.
+        Existing remote apps just didn't seem to work with linux.
     </description>
     <author email="iam@thatguy.co.za" href="http://thatguy.co.za">
         Rudi Strydom (Thatguy)
     </author>
     <content src="index.html" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
 </widget>

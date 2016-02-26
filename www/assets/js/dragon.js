@@ -6,14 +6,13 @@ var dragon = (function($){
     var _endX               = 0;
     var _endY               = 0;
     var _dragging           = false;
-    var _trottleInput       = 20;
+    var _trottleInput       = 10;
     var _pointers           = 0;
     var _startTime          = Date.now();
     var _previousTime       = _startTime;
     var _endTime            = Date.now();
-    var _clickTheshold      = 200;
-    var _dblClickTheshold   = 400;
-    var _rightClickTheshold = 500;
+    var _slow               = false;
+    var _tapping            = false;
     var _tapEventMax        = 3000;
 
 
@@ -28,7 +27,7 @@ var dragon = (function($){
             // Touch Type events
             var touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
             _pointers = (e.originalEvent.touches.length || e.originalEvent.changedTouches.length);
-            console.log(_pointers);
+            //console.log(_pointers);
             out.x = touch.pageX;
             out.y = touch.pageY;
 
@@ -78,28 +77,45 @@ var dragon = (function($){
         _startTime    = Date.now();
 
         var getXY   = pointerPositionXY(event);
-        console.log(_pointers);
+        //console.log(_pointers);
         _startX     = getXY.x;
         _startY     = getXY.y;
     }
 
     // On mouse move / touch move, this tracks the position and sends the commands
     function _track(event) {
-        _dragging   = true;
+        _dragging = true;
         event.preventDefault();
 
         // Get the current position, and the distance we have since dragged
         var getXY       = pointerPositionXY(event);
         _endX           = getXY.x;
         _endY           = getXY.y;
-        _getDistance    = _distance();
+		_getDistance    = _distance();
+
+        // The dragging logic, slow v.s. tapping v.s. dragging
+        _slow = (_getDistance.x < 3 && _getDistance.x > -3 && _getDistance.y < 3 && _getDistance.y > -3);
+        _tapping = (_getDistance.x < 1.2 && _getDistance.x > -1.2 && _getDistance.y < 1.2 && _getDistance.y > -1.2);
+
+        // console.log(
+        //     "SLOW:", _slow,
+        //     "x:", _getDistance.x,
+        //     "y:", _getDistance.y,
+        //     "DB:", db.get('mouseSensitivity')
+        // );
+
+        if (!_getDistance.x && !_getDistance.y) {
+            //console.debug("EMPTY COORDS!");
+            _tapping = true;
+            _dragging = false;
+        }
 
         // Send the command via the BTH
         bth.action(
             JSON.stringify({
                 action: "mouse-move",
-                x: (_getDistance.x < 2 || _getDistance.x > -2) ? _getDistance.x : _getDistance.x * 10,
-                y: (_getDistance.y < 2 || _getDistance.y > -2) ? _getDistance.y : _getDistance.y * 10
+                x: (_slow) ? _getDistance.x : ( _getDistance.x * Number(db.get('mouseSensitivity')) ),
+                y: (_slow) ? _getDistance.y : ( _getDistance.y * Number(db.get('mouseSensitivity')) )
             })
         );
 
@@ -126,41 +142,55 @@ var dragon = (function($){
     // Multiple sequential clicks
     function _handleClicks(){
 
+        console.log(
+            "SLOW:",
+            _slow,
+            "TAPPING:",
+            _tapping
+        );
+
         _endTime            = Date.now();
         var timeSpent       = (_endTime - _startTime);
         var timeSpentBefore = (_endTime - _previousTime);
 
-        console.log("NOW: " + _endTime);
-        console.log("BEFORE: " + _startTime);
-        console.log("OFFSET_NOW: " + timeSpent);
-        console.log("OFFSET_BEFORE: " + timeSpentBefore);
-        console.log("PREVIOUS: " + _previousTime);
-        console.log("DRAGGING: " + _dragging);
-        console.log("RIGHT CLICK?: " + (timeSpent > _rightClickTheshold));
-        console.log("DOUBLE CLICK?: " + (timeSpentBefore > _dblClickTheshold));
-        console.log("CLICK?: " + (timeSpent > _clickTheshold));
+        // Definitely not clicking when dragging!
+        if (!_tapping || timeSpent > (Number(db.get('rightClickSensitivity')) * 2)) {
+            return false;
+        }
 
-        if (timeSpent <= _tapEventMax && ! _dragging){
+        // console.log(
+        //     "NOW: " + timeSpent,
+        //     "BEFORE: " + timeSpentBefore,
+        //     "CLICK THRESHOLD: ", Number(db.get('clickSensitivity')),
+        //     "RCLICK THRESHOLD: ", Number(db.get('rightClickSensitivity')),
+        //     "SLOW: ", _slow,
+        //     "DRAGGING: ", _dragging,
+        //     "TIME SPENT: ", timeSpent
+        // );
 
-            console.log("DRAGGING TIME (MS)");
-            console.log(timeSpent);
+        // Right click
+        if (timeSpent > Number(db.get('rightClickSensitivity'))) {
+            bth.action('rclick');
+            console.log("RIGHT CLICK!");
+            return true;
+        }
 
-            if (timeSpent > _rightClickTheshold){
-                bth.action('rclick');
-            }
+        // Right click
+        if (timeSpentBefore <= (Number(db.get('clickSensitivity')) * 2) ) {
+            bth.action('click');
+            bth.action('click');
+            console.log("DOUBLE CLICK!");
+            return true;
+        }
 
-            else if (timeSpentBefore < _dblClickTheshold){
-                bth.action('click');
-                bth.action('click');
-                console.log("DOUBLE CLICK!");
-            }
-
-            else if (timeSpent < _clickTheshold){
-                bth.action('click');
-                console.log("Single Click");
-            }
+        // Default, just a click
+        if (timeSpent <= Number(db.get('clickSensitivity'))) {
+            bth.action('click');
+            console.log("SINGLE CLICK");
+            return true;
         }
     }
+
 
     // We need to be able to determine how far the dragging action was
     function _distance() {

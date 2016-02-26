@@ -1,3 +1,7 @@
 my-release-key.keystore
 platforms/android/ant-build/
 platforms/android/ant.properties
+Blink.sublime-*
+blink-release.apk
+platforms/android/src/
+platforms/android/build/

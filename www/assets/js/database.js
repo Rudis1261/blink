@@ -3,12 +3,29 @@ var db = (function(window) {
 
     // Setter
     function _set(key, value) {
-        return window.localStorage.setItem(key, value);
+        window.localStorage.setItem(key, value);
+        return value;
     }
 
     // Getter
-    function _get(key) {
-        return window.localStorage.getItem(key);
+    function _get(key, defaultValue) {
+        // console.log(
+        //     "DB Checking GET:",
+        //     key,
+        //     "Value:",
+        //     window.localStorage.getItem(key),
+        //     "DEFAULT:",
+        //     defaultValue
+        // );
+
+        if (typeof window.localStorage.getItem(key) !== "undefined" && typeof window.localStorage.getItem(key) !== "null") {
+            return window.localStorage.getItem(key);
+        }
+        if (_.isEmpty(defaultValue)) {
+            return false;
+        }
+
+        return db.set(defaultValue);
     }
 
     // Trash info

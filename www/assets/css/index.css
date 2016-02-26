@@ -146,3 +146,39 @@ h1 {
     from {-moz-transform: rotate(0deg);}
     to {-moz-transform: rotate(360deg);}
 }
+
+.swipearea__play {
+    line-height: 80px;
+    color: #688668;
+    font-size: 13px;
+}
+.swipearea__prev {
+    display: inline-block;
+    margin-right: 50px;
+    color: #688668;
+    line-height: 140px;
+    font-size: 13px;
+    float: right;
+}
+.swipearea__next {
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    color: #688668;
+    line-height: 140px;
+    margin-left: 50px;
+}
+.swipearea__message {
+    line-height: 140px;
+    text-align: center;
+    width: 90%;
+    left: 5%;
+    position: absolute;
+
+}
+.swipearea__stop {
+    clear: both;
+    color: #688668;
+    line-height: 85px;
+    font-size: 13px;
+}

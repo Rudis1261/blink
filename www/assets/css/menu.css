@@ -64,3 +64,19 @@
     line-height: 40px;
     color: black;
 }
+
+.menu-side strong {
+    text-transform: uppercase;
+    color: #555;
+}
+.menu-side div.menu__setting--group {
+    height: 80px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+.menu-side div.slider {
+    height: 17px;
+    width: 70%;
+    margin: auto;
+    margin-top: 18px;
+}

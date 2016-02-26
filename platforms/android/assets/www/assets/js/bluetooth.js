@@ -28,8 +28,6 @@ var bth = (function($, window, db, loader) {
     function _construct()
     {
         $(document).on("deviceready", function(){
-
-            _volumeRocker();
             _goButton();
             _swipeArea();
             _touchArea();
@@ -37,7 +35,7 @@ var bth = (function($, window, db, loader) {
 
             var getDevices = db.get("devices");
 
-            getDevices.forEach(function(el, index, array){
+            _.each(getDevices, function(el, index, array){
                 console.log(el);
                 console.log(array[index]);
             });
@@ -122,7 +120,7 @@ var bth = (function($, window, db, loader) {
 
             $('div.devices').show();
             var deviceList = "";
-            devices.forEach(function(device) {
+            _.each(devices, function(device) {
                 deviceList += '<li data-id="' + device.id + '" onClick="bth.connect(\'' + device.id + '\');">';
                 deviceList += device.name;
                 deviceList += '</li>';
@@ -200,33 +198,6 @@ var bth = (function($, window, db, loader) {
         }
     }
 
-
-    /*function _mainLoop(){
-        _theLoop = setInterval(function(){_loop();}, _loopInterval);
-    }
-
-    function _loop() {
-
-        bluetoothSerial.isEnabled(
-            _onEnabled,
-            _onDisabled
-        );
-    }*/
-
-    // Volume Rocker Event Listener
-    function _volumeRocker() {
-        $(window).on("volumebuttonslistener", function(event){
-            if (event.originalEvent.signal){
-                if (event.originalEvent.signal == "volume-down"){
-                    _action("vol-down");
-                }
-                if (event.originalEvent.signal == "volume-up"){
-                    _action("vol-up");
-                }
-            }
-        });
-    }
-
     // We have a swipe are we need to be able to detect
     function _swipeArea() {
         var actions         = {};
@@ -237,13 +208,18 @@ var bth = (function($, window, db, loader) {
         actions["down"]     = "stop";
         actionText["right"] = "Previous";
         actionText["left"]  = "Next";
-        actionText["up"]    = "Playing";
-        actionText["down"]  = "Stopped";
+        actionText["up"]    = "Play/Pause";
+        actionText["down"]  = "Stop";
 
         $(".swipearea").swipe({
             swipe:function(event, direction, distance, duration, fingerCount){
                 if (actions[direction]) {
-                    $(this).text(actionText[direction]);
+                    var messageElement = $(this).children('.swipearea__message');
+                    messageElement.text(actionText[direction]);
+                    window.clearTimeout(window.messageTimeout);
+                    window.messageTimeout = window.setTimeout(function(){
+                        messageElement.text('Swipe Area');
+                    }, 1000);
                     bth.action(actions[direction]);
                 }
             },

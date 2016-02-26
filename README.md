@@ -10,3 +10,6 @@ Where you want to be able to control your Linux Computer, and Wifi is not an opt
 Follow the instructions to get the server on it's dedicated GitHub page: https://github.com/drpain/blink-server
 
 And enjoy!
+Fetching plugin "com.manueldeveloper.volume-buttons" via npm
+cordova plugin add com.manueldeveloper.volume-buttons
+cordova plugin add cordova-plugin-bluetooth-serial
