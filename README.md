@@ -12,6 +12,10 @@ Follow the instructions to get the server on it's dedicated GitHub page: https:/
 And enjoy!
 
 # Changelog
+### V1.0.1 - 29 Feb 2016
+- Bug Fix: When you would drag the mouse and stop, it would from time to time right click. Which may be annoying.
+
+
 ### V1.0.0 - 27 Feb 2016
 - Mouse speed slider (mouse movement speed)
 - Click sensitivity slider (How fast / slow for a tap to register a click)
@@ -24,7 +28,7 @@ Swipe Area Changes | Added Application Settings
 -------------------|---------------------------
 ![Swipe Area Screen Change](/designs/screenshots/Screenshot_2016-02-27-01-14-18.png)|![Added Application Settings](/designs/screenshots/Screenshot_2016-02-27-01-14-36.png)
 
-### Notes (Mostly for myself) 
+### Notes (Mostly for myself)
 
 Relies on the following cordova plugin (No consern to installers)
 
