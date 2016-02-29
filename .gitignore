@@ -6,3 +6,6 @@ blink-release.apk
 platforms/android/src/
 platforms/android/build/
 blink_0.0.1
+platforms/android/.gradle
+platforms/android/assets/
+blink-release-unsigned.apk
