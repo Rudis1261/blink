@@ -10,6 +10,7 @@ var dragon = (function($){
     var _pointers           = 0;
     var _startTime          = Date.now();
     var _previousTime       = _startTime;
+    var _lastDrag           = _startTime;
     var _endTime            = Date.now();
     var _slow               = false;
     var _tapping            = false;
@@ -85,6 +86,7 @@ var dragon = (function($){
     // On mouse move / touch move, this tracks the position and sends the commands
     function _track(event) {
         _dragging = true;
+        _lastDrag = Date.now();
         event.preventDefault();
 
         // Get the current position, and the distance we have since dragged
@@ -94,15 +96,21 @@ var dragon = (function($){
 		_getDistance    = _distance();
 
         // The dragging logic, slow v.s. tapping v.s. dragging
-        _slow = (_getDistance.x < 3 && _getDistance.x > -3 && _getDistance.y < 3 && _getDistance.y > -3);
         _tapping = (_getDistance.x < 1.2 && _getDistance.x > -1.2 && _getDistance.y < 1.2 && _getDistance.y > -1.2);
+        _slow = (_getDistance.x < 3 && _getDistance.x > -3 && _getDistance.y < 3 && _getDistance.y > -3);
+        dragged = (!_tapping); // allow some more space before dragging
 
+        //console.log("dragged:", dragged);
         // console.log(
         //     "SLOW:", _slow,
         //     "x:", _getDistance.x,
         //     "y:", _getDistance.y,
         //     "DB:", db.get('mouseSensitivity')
         // );
+
+        if (dragged && !_getDistance.x && !_getDistance.y) {
+            _lastDrag = Date.now();
+        }
 
         if (!_getDistance.x && !_getDistance.y) {
             //console.debug("EMPTY COORDS!");
@@ -142,19 +150,20 @@ var dragon = (function($){
     // Multiple sequential clicks
     function _handleClicks(){
 
-        console.log(
+        /*console.log(
             "SLOW:",
             _slow,
             "TAPPING:",
             _tapping
-        );
+        );*/
 
         _endTime            = Date.now();
         var timeSpent       = (_endTime - _startTime);
         var timeSpentBefore = (_endTime - _previousTime);
+        var lastDragged = (Date.now() - _lastDrag);
 
         // Definitely not clicking when dragging!
-        if (!_tapping || timeSpent > (Number(db.get('rightClickSensitivity')) * 2)) {
+        if (!_tapping || timeSpent > (Number(db.get('rightClickSensitivity')) * 6)) {
             return false;
         }
 
@@ -168,8 +177,10 @@ var dragon = (function($){
         //     "TIME SPENT: ", timeSpent
         // );
 
+        //console.log("lastDragged:", lastDragged);
+
         // Right click
-        if (timeSpent > Number(db.get('rightClickSensitivity'))) {
+        if (timeSpent > Number(db.get('rightClickSensitivity')) && lastDragged > 399) {
             bth.action('rclick');
             console.log("RIGHT CLICK!");
             return true;
