@@ -39,4 +39,7 @@ cordova plugin add cordova-plugin-bluetooth-serial
 
 # Creating project directory
 cordova create <project> co.za.thatguy.<project> <project>
+
+# Add Android
+cordova platform add android
 ```
