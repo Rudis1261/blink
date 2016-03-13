@@ -42,4 +42,10 @@ cordova create <project> co.za.thatguy.<project> <project>
 
 # Add Android
 cordova platform add android
+
+# Releases
+cordova build android
+
+cordova build android --debug       # Debug Mode
+cordova build android --release     # Release
 ```
