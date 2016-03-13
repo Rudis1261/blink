@@ -33,6 +33,10 @@ Swipe Area Changes | Added Application Settings
 Relies on the following cordova plugin (No consern to installers)
 
 ```shell
+# Adding plugins
 cordova plugin add com.manueldeveloper.volume-buttons
 cordova plugin add cordova-plugin-bluetooth-serial
+
+# Creating project directory
+cordova create <project> co.za.thatguy.<project> <project>
 ```
