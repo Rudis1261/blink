@@ -1,13 +1,13 @@
 # Blink
 ### Bluetooth Linux Remote for Android devices
 
-Where you want to be able to control your Linux Computer, and Wifi is not an option. This is something I wrote, because nothing else on the market seemed to work.
+When you want to be able to control your Linux Computer, and Wifi is not an option. This is something I wrote, because nothing else on the market seemed to work.
 
 ### Get the app on the Android AppStore:
 https://play.google.com/store/apps/details?id=co.za.thatguy.blink
 
 ### Get the Server:
-Follow the instructions to get the server on it's dedicated GitHub page: https://github.com/drpain/blink-server
+Follow the instructions to get the server on its dedicated GitHub page: https://github.com/drpain/blink-server
 
 And enjoy!
 
@@ -30,7 +30,7 @@ Swipe Area Changes | Added Application Settings
 
 ### Notes (Mostly for myself)
 
-Relies on the following cordova plugin (No consern to installers)
+Relies on the following cordova plugin (No concern to installers)
 
 ```shell
 # Adding plugins
